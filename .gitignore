@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+*.log
+*.ini
+connection.json
+credentials.json
+mysql-home.txt
+results-*/
