@@ -1,0 +1,26 @@
+name: Сборка и автотесты
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Регистратура на Windows
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - name: Получить исходники
+        uses: actions/checkout@v4
+      - name: Установить .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Собрать Windows Forms
+        run: dotnet build app/Clinic06.csproj --configuration Release
+      - name: Выполнить 10 автотестов
+        run: dotnet run --project tests/Clinic06.Tests.csproj --configuration Release
