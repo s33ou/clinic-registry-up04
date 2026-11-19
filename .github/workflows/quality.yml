@@ -15,9 +15,11 @@ jobs:
     timeout-minutes: 12
     steps:
       - name: Получить исходники
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Установить .NET 8
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '8.0.x'
       - name: Собрать Windows Forms
